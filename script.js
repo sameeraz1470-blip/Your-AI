@@ -25,10 +25,60 @@ function sendmessage() {
     if (
         lowerMessage.includes("hello") ||
         lowerMessage.includes("hlo") ||
+        lowerMessage.includes("hii") ||
         lowerMessage.includes("hi")
     ) {
         aiMessage.textContent = "Hello Divya! How is your Day 😊";
+    } else if 
+        (
+         lowerMessage.includes("fine")
 
+    ) { 
+        aiMessage.textContent = "GOOD 😊";
+            
+     } else if (lowerMessage.includes("not fine")) {
+        aiMessage.textContent = "why?";
+
+    } else if 
+        (
+         lowerMessage.includes("what about you")
+
+    ) { 
+         aiMessage.textContent = "yeah super🥰 ";
+    // Love Expose
+    } else if (lowerMessage.includes("i love you")) {
+        aiMessage.textContent = "I Love You Too Divya.. 😍 🥰";
+            
+    } else if (lowerMessage.includes("i hate you")) {
+        aiMessage.textContent = "I hate You Too Divya.. 🥰";
+            
+     } else if (lowerMessage.includes("who is your favourite girl")) {
+        aiMessage.textContent = "It's You Divya 😍";
+            
+     } else if (lowerMessage.includes("give me a kiss") ||
+               lowerMessage.includes("i want kiss") ||
+               lowerMessage.includes("kiss me"))  {
+        aiMessage.textContent = "😚👩‍❤️‍💋‍👨😘💋💋💋💋💋 is it enough Divya garu?";
+
+      } else if (lowerMessage.includes("no i want more kiss")) {
+        aiMessage.textContent = "👩‍❤️‍💋‍👨😘💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋💋...";
+
+     } else if (lowerMessage.includes("give me a hug") ||
+               lowerMessage.includes("i want hug") ||
+               lowerMessage.includes("hug me"))  {
+        aiMessage.textContent = "🫂🫂🫂🫂🫂🫂🫂 is it enough Divya garu?";
+
+     } else if (lowerMessage.includes("no i want more hug") ||
+               lowerMessage.includes("i want more hug")) {
+        aiMessage.textContent = "🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂🫂...";
+            
+     } else if (lowerMessage.includes("what are you doing") ||
+                lowerMessage.includes("what r u doing") ||
+                lowerMessage.includes("em dng") ||
+                lowerMessage.includes("em chestunavu")) {
+        aiMessage.textContent = "Nuvu em cheptavo ani wait chestunna";
+
+     
     // HOW ARE YOU
     } else if (lowerMessage.includes("how are you")) {
         aiMessage.textContent = "I am doing great! 😍 How are You? 🥰";
@@ -494,7 +544,7 @@ function sendmessage() {
     // UNKNOWN MESSAGE
     } else {
         aiMessage.textContent =
-            "Sorry, I don't understand that yet.";
+            "Sorry Divya garu, I don't understand that yet.";
     }
 
     chatContainer.appendChild(aiMessage);
@@ -511,4 +561,98 @@ messageInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         sendmessage();
     }
+});
+// =========================
+// CHAT HISTORY
+// =========================
+
+const newChatButton = document.querySelector("#new-chat-button");
+
+const chat1Button = document.querySelector("#chat1");
+const chat2Button = document.querySelector("#chat2");
+const chat3Button = document.querySelector("#chat3");
+
+let currentChat = 1;
+
+
+// =========================
+// SAVE CHAT
+// =========================
+
+function saveChat(chatNumber) {
+
+    localStorage.setItem(
+        "alphaChat" + chatNumber,
+        chatContainer.innerHTML
+    );
+}
+
+
+// =========================
+// LOAD CHAT
+// =========================
+
+function loadChat(chatNumber) {
+
+    saveChat(currentChat);
+
+    currentChat = chatNumber;
+
+    const savedChat = localStorage.getItem(
+        "alphaChat" + chatNumber
+    );
+
+    if (savedChat) {
+        chatContainer.innerHTML = savedChat;
+    } else {
+        chatContainer.innerHTML = "";
+    }
+
+    messageInput.value = "";
+    messageInput.focus();
+}
+
+
+// =========================
+// NEW CHAT
+// =========================
+
+newChatButton.addEventListener("click", function() {
+
+    saveChat(currentChat);
+
+    currentChat = 1;
+
+    chatContainer.innerHTML = "";
+
+    messageInput.value = "";
+
+    messageInput.focus();
+});
+
+
+// =========================
+// CHAT 1
+// =========================
+
+chat1Button.addEventListener("click", function() {
+    loadChat(1);
+});
+
+
+// =========================
+// CHAT 2
+// =========================
+
+chat2Button.addEventListener("click", function() {
+    loadChat(2);
+});
+
+
+// =========================
+// CHAT 3
+// =========================
+
+chat3Button.addEventListener("click", function() {
+    loadChat(3);
 });
